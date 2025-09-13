@@ -1,69 +1,108 @@
-# React + TypeScript + Vite
+# ScaleUI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+⚡ **ScaleUI** is a high-performance React UI library for **big data presentation at scale**.  
+It provides blazing-fast, virtualized components to explore, visualize, and interact with **massive datasets** (JSON, logs, grids, trees) without performance bottlenecks.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## Expanding the ESLint configuration
+- 🚀 **Performance-first** — built with virtualization, lazy rendering, and async fetching
+- 📊 **Big Data Ready** — handle JSON, logs, and tabular data with millions of records
+- 🔍 **On-demand Fetching** — dynamically load data as users expand or scroll
+- 🎨 **Customizable** — theming, dark/light mode, and pluggable renderers
+- 🧩 **Composable** — core building blocks for dashboards, admin panels, or data-intensive UIs
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📦 Components (Roadmap)
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- **`VirtualList`** → core list renderer for 100k+ items
+- **`JsonViewer`** → explore massive JSON with lazy expansion & fetch-on-expand
+- **`DataGrid`** → high-performance grid for millions of rows (sticky headers, infinite scroll)
+- **`LogViewer`** → real-time log streaming with search & highlighting
+- **`TreeViewer`** → scalable tree explorer (filesystem/config style)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## 🚀 Getting Started
+
+### Installation
+
+```bash
+npm install scale-ui
+# or
+yarn add scale-ui
+# or
+pnpm add scale-ui
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Usage
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```tsx
+import { JsonViewer } from "scale-ui";
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+export default function App() {
+  const data = {
+    users: Array.from({ length: 10000 }, (_, i) => ({
+      id: i,
+      name: `User ${i}`,
+    })),
+  };
+
+  return (
+    <div style={{ height: 400 }}>
+      <JsonViewer data={data} />
+    </div>
+  );
+}
 ```
+
+---
+
+## 🛠 Development (Local Setup)
+
+Clone and run locally:
+
+```bash
+git clone https://github.com/naijizhang/ScaleUI.git
+cd ScaleUI
+npm install
+npm run dev
+```
+
+Build the library:
+
+```bash
+npm run build
+```
+
+Run Storybook (once added):
+
+```bash
+npm run storybook
+```
+
+---
+
+## 📈 Roadmap
+
+- [ ] Initial release with `VirtualList` + `JsonViewer`
+- [ ] Add `DataGrid` and `LogViewer`
+- [ ] Documentation site (Docusaurus or VitePress)
+- [ ] Performance benchmarks & tests
+- [ ] Advanced theming and accessibility support
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!  
+Feel free to open an [issue](https://github.com/naijizhang/ScaleUI/issues) or submit a PR.
+
+---
+
+## 📜 License
+
+This project is licensed under the [MIT License](./LICENSE).  
+Copyright © 2025 **Naiji Zhang**
